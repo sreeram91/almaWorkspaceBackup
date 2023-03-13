@@ -1,0 +1,25 @@
+---
+  - name: "install vim on rockylinux 9.1"
+    hosts:  rockyadmin
+    become: yes
+    become_method: sudo
+    vars:
+      ansible_become_password: rockylinux
+
+    tasks:
+      - name: "install vim"
+        yum:
+          name: vim
+          state: present
+
+      - name: "debug"
+        debug:
+          msg: "vim installed on {{ inventory_hostname }}"
+
+      - name: "check vim version"
+        command: vim --version
+        register: vim_version_output
+
+      - name: "print the version"
+        debug:
+          var: vim_version_output.stdout_lines

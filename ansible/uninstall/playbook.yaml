@@ -1,0 +1,26 @@
+---
+  - name: "uninstall vim from rockylinux 9.1"
+    hosts:  rockyadmin
+    become: yes
+    become_method: sudo
+    vars:
+      ansible_become_password: rockylinux
+
+    tasks:
+      - name: "uninstall vim"
+        yum:
+          name: vim
+          state: absent
+
+      - name: "debug"
+        debug:
+          msg: "vim uninstalled from {{ inventory_hostname }}"
+
+      - name: "check vim version"
+        command: vim --version
+        register: vim_version_output
+        ignore_errors: yes
+
+      - name: "display the error"
+        debug:
+          var: vim_version_output.stderr_lines

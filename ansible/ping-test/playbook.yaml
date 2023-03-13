@@ -1,0 +1,11 @@
+---
+  - name: "ping rockylinux 9.1"
+    hosts: rockyadmin
+
+    tasks:
+      - name: "ping test on rockyadmin"
+        ping:
+
+      - name: "ping message"
+        debug:
+          msg: "ping successful on {{ inventory_hostname }}"

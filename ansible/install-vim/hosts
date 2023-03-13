@@ -1,0 +1,2 @@
+[rockyadmin]
+192.168.146.150	ansible_user=rockyadmin	ansible_connection=ssh
